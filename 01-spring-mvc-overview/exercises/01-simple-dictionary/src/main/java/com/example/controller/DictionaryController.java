@@ -3,6 +3,7 @@ package com.example.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -23,8 +24,8 @@ public class DictionaryController {
         return "/index";
     }
 
-    @GetMapping("/translate")
-    public RedirectView translate(@RequestParam("txtSearch") String txtSearch, RedirectAttributes redirectAttributes) throws IOException {
+    @PostMapping("/translate")
+    public String translate(@RequestParam("txtSearch") String txtSearch, Model model) throws IOException {
         System.out.println("input " + txtSearch);
         String result = "Không tìm thấy kết quả phù hợp";
 
@@ -44,13 +45,6 @@ public class DictionaryController {
             break;
         }
         System.out.println("result " + result);
-        redirectAttributes.addAttribute("result", result);
-        redirectAttributes.addAttribute("txtSearch", txtSearch);
-        return new RedirectView("/result");
-    }
-
-    @RequestMapping("/result")
-    public String showResult(@RequestParam("txtSearch") String txtSearch,@RequestParam("result") String result, Model model) throws IOException {
         model.addAttribute("txtSearch", txtSearch);
         model.addAttribute("result", result);
         return "/result";
