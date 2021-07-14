@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CurrencyController {
+    @Autowired
+    CurrencyService currencyService;
+
     @GetMapping("/")
     public String showForm(){
         return "/index";
     }
-
-    @Autowired
-    CurrencyService currencyService;
 
     @PostMapping("/convert")
     public String convert(@RequestParam("rate") float rate, @RequestParam("usd") float usd, Model model){
