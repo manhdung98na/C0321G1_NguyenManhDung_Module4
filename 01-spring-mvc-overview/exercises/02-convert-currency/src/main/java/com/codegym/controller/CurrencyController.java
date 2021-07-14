@@ -1,5 +1,7 @@
 package com.codegym.controller;
 
+import com.codegym.service.CurrencyService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,11 +15,12 @@ public class CurrencyController {
         return "/index";
     }
 
+    @Autowired
+    CurrencyService currencyService;
+
     @PostMapping("/convert")
     public String convert(@RequestParam("rate") float rate, @RequestParam("usd") float usd, Model model){
-        System.out.println(rate);
-        System.out.println(usd);
-        float vnd = rate * usd;
+        float vnd = currencyService.convert(usd,rate);
         model.addAttribute("usd", usd);
         model.addAttribute("vnd", vnd);
         return "/result";
