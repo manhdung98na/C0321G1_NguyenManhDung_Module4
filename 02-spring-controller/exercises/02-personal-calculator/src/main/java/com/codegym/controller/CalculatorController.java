@@ -1,5 +1,7 @@
-package com.codegym.comtroller;
+package com.codegym.controller;
 
+import com.codegym.service.CalculatorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class CalculatorController {
 
+    @Autowired
+    CalculatorService calculatorService;
+
     @GetMapping("/")
     public String showHomePage(){
         return "calculator";
@@ -16,28 +21,12 @@ public class CalculatorController {
     @PostMapping("/")
     public String calculate(@RequestParam float soHang1, float soHang2, String btn, Model model){
         float result;
-        switch (btn){
-            case "addition":
-                result = soHang1 + soHang2;
-                break;
-            case "subtraction":
-                result = soHang1 - soHang2;
-                break;
-            case "multiplication":
-                result = soHang1 * soHang2;
-                break;
-            case "division":
-                if (soHang2 == 0){
-                    model.addAttribute("result", "Can not divide to Zero!");
-                    return "calculator";
-                }else {
-                    result = soHang1 / soHang2;
-                }
-                break;
-            default:
-                return "calculator";
+        try {
+            result = calculatorService.calculator(soHang1, soHang2, btn);
+            model.addAttribute("result", result);
+        }catch (Exception e){
+            model.addAttribute("result", e.getMessage());
         }
-        model.addAttribute("result", result);
         return "calculator";
     }
 }
