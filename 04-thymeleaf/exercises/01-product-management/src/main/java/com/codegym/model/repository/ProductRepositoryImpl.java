@@ -11,10 +11,10 @@ public class ProductRepositoryImpl implements ProductRepository{
     public final static Map<Integer, Product> list;
     static {
         list = new HashMap<>();
-        list.put(1,new Product(1, "Bút bi", "Thiên Long", 5000));
-        list.put(2,new Product(2, "Vở kẻ ngang", "Campus", 15000));
-        list.put(3,new Product(3, "Bút xoá", "Thiên Long", 10000));
-        list.put(4,new Product(4, "Thước kẻ", "Hoa Việt", 8000));
+        list.put(1,new Product(1, "Bút bi", "Thiên Long", (float) 5000));
+        list.put(2,new Product(2, "Vở kẻ ngang", "Campus", (float) 15000));
+        list.put(3,new Product(3, "Bút xoá", "Thiên Long", (float) 10000));
+        list.put(4,new Product(4, "Thước kẻ", "Hoa Việt", (float) 8000));
     }
 
     @Override

@@ -1,26 +1,26 @@
 package com.codegym.model.bean;
 
 public class Product {
-    private int id;
+    private Integer id;
     private String name;
     private String brand;
-    private float price;
+    private Float price;
 
     public Product() {
     }
 
-    public Product(int id, String name, String description, float price) {
+    public Product(Integer id, String name, String description, Float price) {
         this.id = id;
         this.name = name;
         this.brand = description;
         this.price = price;
     }
 
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -40,11 +40,11 @@ public class Product {
         this.brand = brand;
     }
 
-    public float getPrice() {
+    public Float getPrice() {
         return price;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(Float price) {
         this.price = price;
     }
 
