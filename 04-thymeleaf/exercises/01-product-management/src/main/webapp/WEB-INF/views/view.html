@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+</head>
+<body>
+<h2>PRODUCT DETAIL</h2>
+<table id = "products" style="width: 50vw">
+    <tr>
+        <th class="th-view">ID</th>
+        <td th:text="${product.getId()}"></td>
+    </tr>
+    <tr>
+        <th class="th-view">Name</th>
+        <td th:text="${product.getName()}"></td>
+    </tr>
+    <tr>
+        <th class="th-view">Brand</th>
+        <td th:text="${product.getBrand()}"></td>
+    </tr>
+    <tr>
+        <th class="th-view">Price</th>
+        <td th:text="${product.getPrice()}"></td>
+    </tr>
+</table>
+<a th:href="@{/product}">
+    Back to home
+</a>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>

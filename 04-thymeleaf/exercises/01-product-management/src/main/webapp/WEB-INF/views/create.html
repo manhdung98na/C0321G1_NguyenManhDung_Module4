@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="/layout :: head"></head>
+<body>
+<h2>ADD NEW PRODUCT</h2>
+<form th:action="@{/product/create}" th:object="${product}" method="post" id="form">
+    <table id="products">
+        <tr>
+            <td>
+                <label for="id">ID: </label>
+            </td>
+            <td>
+                <input type="text" id="id" th:field="*{id}" th:required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="name">Name: </label>
+            </td>
+            <td>
+                <input type="text" id="name" th:field="*{name}" th:required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="brand">Brand: </label>
+            </td>
+            <td>
+                <input type="text" id="brand" th:field="*{brand}" th:required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label for="price">Price: </label>
+            </td>
+            <td>
+                <input type="text" id="price" th:field="*{price}" th:required="true"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="reset" value="Reset"/>
+                <input type="submit" value="Submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<a th:href="@{/product}">
+    Back to home
+</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
