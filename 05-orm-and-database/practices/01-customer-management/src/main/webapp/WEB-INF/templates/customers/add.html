@@ -1,0 +1,26 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create new customer</title>
+</head>
+<body>
+<h2>Create student</h2>
+
+<form th:action="@{/customers/add}" method="post" th:object="${customer}">
+
+<!--    <p>ID: </p>-->
+<!--    <input type="text" th:field="*{id}"/>-->
+    <p>Name: </p>
+    <input type="text" th:field="*{name}"/>
+    <p>Email: </p>
+    <input type="email" th:field="*{email}"/>
+    <p>Address: </p>
+    <input type="text" th:field="*{address}"/>
+
+    <input type="submit" value="Create"/>
+
+</form>
+<a href="/customers">Back</a>
+<div th:replace="~{common_student :: footerStudent}">
+</div>
+</body>
+</html>
