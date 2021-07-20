@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/layout :: head">
+</head>
+<body>
+<h2>PRODUCTS LIST</h2>
+<!--nút thêm mới-->
+<p id="add-product" th:hidden="false">
+    <a th:href="@{/products/create}" style="float: left; padding: 8px">
+        Add new customer
+    </a>
+</p>
+<!--thanh tìm kiếm-->
+<div style="display: inline;float: right; width: 300px; height: 50px; margin: 8px">
+    <form th:action="@{/products/search}" method="get">
+        <input type="text" id="search-content" name="search-content" placeholder="Search by name" style="display: inline; width: 70%; padding: 8px">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<!--form xác nhận xoá-->
+<form id="delete-product" method="post" th:action="@{/products/delete}" hidden>
+    <input hidden name="id-delete" id="id-delete" value="">
+    <h4>Xoá nhận xoá</h4>
+    <div>
+        <button type="button" onclick="hideConfirmForm()">No</button>
+        <button type="submit">Yes</button>
+    </div>
+</form>
+
+<!--thông báo thành công/thất bại-->
+<div class="notify">
+    <div th:if="${status}">
+        <!--/*@thymesVar id="success" type="com.codegym.controller"*/-->
+        <span th:text="${status}"></span>
+    </div>
+</div>
+
+<!--danh sách sản phẩm-->
+<table id="products">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+        <td><a th:href="@{/products/view/{id}(id=${product.id})}" th:text="${product.id}"></a></td>
+        <td th:text="${product.name}"></td>
+        <td th:text="${product.brand}"></td>
+        <td th:text="${product.price}"></td>
+        <td>
+            <a th:href="@{/products/view/{id}(id=${product.id})}">View</a>
+            <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+            <a th:href="@{#}" th:onclick="|confirmDelete('${product.id}')|">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a th:href="@{/products}">Back to home</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+<script>
+    function confirmDelete(id) {
+        document.getElementById("id-delete").value = id;
+        document.getElementById("add-product").hidden = true;
+        document.getElementById("delete-product").hidden = false;
+    }
+</script>
+<script>
+    function hideConfirmForm() {
+        document.getElementById("add-product").hidden = false;
+        document.getElementById("delete-product").hidden = true;
+    }
+</script>
+</html>
