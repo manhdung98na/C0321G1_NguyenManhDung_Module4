@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/layout::head">
+</head>
+<body>
+<h2>BLOG DETAIL</h2>
+<table id = "blogs" style="width: 50vw">
+    <tr>
+        <th class="th-view">ID</th>
+        <td th:text="${blog.id}"></td>
+    </tr>
+    <tr>
+        <th class="th-view">Title</th>
+        <td th:text="${blog.titleBlog}"></td>
+    </tr>
+    <tr>
+        <th class="th-view">Content</th>
+        <td th:text="${blog.contentBlog}"></td>
+    </tr>
+</table>
+<a href="/">
+    Back to home
+</a>
+<footer th:replace="/layout::footer"></footer>
+</body>
+</html>

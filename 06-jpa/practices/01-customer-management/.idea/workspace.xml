@@ -20,31 +20,84 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da050aac-24b9-48ec-ad56-6a92e1c63a24" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gradlew.bat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/configuration/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/configuration/AppInit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/controller/CustomerController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/model/Customer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/repository/CustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/repository/ICustomerRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/repository/IGeneralRepository.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/service/CustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/service/ICustomerService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/codegym/cms/service/IGeneralService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/delete.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/edit.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/views/customer/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/modules/01-blog-application.main.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/controller/BlogController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/model/bean/Blog.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/model/repository/BaseRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/model/repository/BlogRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/model/repository/BlogRepositoryImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/model/service/BlogService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/java/com/codegym/model/service/BlogServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/resources/hibernate.conf.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/applicationContext.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/dispatcher-servlet.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/views/create.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/views/layout.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/views/list.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/views/view.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../exercises/01-blog-application/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/executionHistory/executionHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/executionHistory/executionHistory.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/fileChanges/last-build.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/fileContent/fileContent.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/fileHashes/fileHashes.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/fileHashes/fileHashes.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/javaCompile/classAnalysis.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/javaCompile/javaCompile.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/6.1.1/javaCompile/taskHistory.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/buildOutputCleanup/cache.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/checksums/checksums.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.gradle/vcs-1/gc.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/gradle.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/uiDesigner.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/configuration/AppConfig.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/configuration/AppInit.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/controller/CustomerController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/model/bean/Customer.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/model/repository/CustomerRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/model/repository/ICustomerRepository.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/model/service/CustomerService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/classes/java/main/com/codegym/cms/model/service/ICustomerService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/libs/02-jpa-store-procedure-1.0.war" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/build/tmp/war/MANIFEST.MF" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/gradle/wrapper/gradle-wrapper.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/gradle/wrapper/gradle-wrapper.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/gradlew" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/gradlew.bat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/settings.gradle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/configuration/AppConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/configuration/AppInit.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/controller/CustomerController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/model/bean/Customer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/model/repository/CustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/model/repository/ICustomerRepository.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/model/service/CustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/java/com/codegym/cms/model/service/ICustomerService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../02-jpa-store-procedure/src/main/webapp/WEB-INF/views/customer/create.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../05-orm-and-database/exercises/01-product-management/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../05-orm-and-database/exercises/01-product-management/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../05-orm-and-database/practices/selftest-spring-orm-4/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../../05-orm-and-database/practices/selftest-spring-orm-4/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,6 +150,7 @@
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="RunManager">
     <configuration name="Tomcat 9.0.214" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.214" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
@@ -185,7 +239,8 @@
       <option name="presentableId" value="Default" />
       <updated>1626807052580</updated>
       <workItem from="1626807070024" duration="1888000" />
-      <workItem from="1626830874550" duration="844000" />
+      <workItem from="1626830874550" duration="1121000" />
+      <workItem from="1626854035135" duration="26000" />
     </task>
     <servers />
   </component>
@@ -216,53 +271,53 @@
       <screen x="0" y="0" width="1366" height="768" />
     </state>
     <state x="137" y="38" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.768@0.0.1366.768" timestamp="1626807333131" />
-    <state width="905" height="347" key="GridCell.Tab.0.bottom" timestamp="1626812746773">
+    <state width="905" height="307" key="GridCell.Tab.0.bottom" timestamp="1626831997185">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1626812746773" />
-    <state width="905" height="347" key="GridCell.Tab.0.center" timestamp="1626812746773">
+    <state width="905" height="307" key="GridCell.Tab.0.bottom/0.0.1366.768@0.0.1366.768" timestamp="1626831997185" />
+    <state width="905" height="307" key="GridCell.Tab.0.center" timestamp="1626831997185">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1626812746773" />
-    <state width="905" height="347" key="GridCell.Tab.0.left" timestamp="1626812746773">
+    <state width="905" height="307" key="GridCell.Tab.0.center/0.0.1366.768@0.0.1366.768" timestamp="1626831997185" />
+    <state width="905" height="307" key="GridCell.Tab.0.left" timestamp="1626831997185">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1626812746773" />
-    <state width="905" height="347" key="GridCell.Tab.0.right" timestamp="1626812746773">
+    <state width="905" height="307" key="GridCell.Tab.0.left/0.0.1366.768@0.0.1366.768" timestamp="1626831997185" />
+    <state width="905" height="307" key="GridCell.Tab.0.right" timestamp="1626831997185">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1626812746773" />
-    <state width="905" height="347" key="GridCell.Tab.1.bottom" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.0.right/0.0.1366.768@0.0.1366.768" timestamp="1626831997185" />
+    <state width="905" height="307" key="GridCell.Tab.1.bottom" timestamp="1626831997187">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
-    <state width="905" height="347" key="GridCell.Tab.1.center" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.1.bottom/0.0.1366.768@0.0.1366.768" timestamp="1626831997187" />
+    <state width="905" height="307" key="GridCell.Tab.1.center" timestamp="1626831997186">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
-    <state width="905" height="347" key="GridCell.Tab.1.left" timestamp="1626812746773">
+    <state width="905" height="307" key="GridCell.Tab.1.center/0.0.1366.768@0.0.1366.768" timestamp="1626831997186" />
+    <state width="905" height="307" key="GridCell.Tab.1.left" timestamp="1626831997186">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1626812746773" />
-    <state width="905" height="347" key="GridCell.Tab.1.right" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.1.left/0.0.1366.768@0.0.1366.768" timestamp="1626831997186" />
+    <state width="905" height="307" key="GridCell.Tab.1.right" timestamp="1626831997187">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
-    <state width="905" height="347" key="GridCell.Tab.2.bottom" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.1.right/0.0.1366.768@0.0.1366.768" timestamp="1626831997187" />
+    <state width="905" height="307" key="GridCell.Tab.2.bottom" timestamp="1626831997188">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.2.bottom/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
-    <state width="905" height="347" key="GridCell.Tab.2.center" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.2.bottom/0.0.1366.768@0.0.1366.768" timestamp="1626831997188" />
+    <state width="905" height="307" key="GridCell.Tab.2.center" timestamp="1626831997188">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.2.center/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
-    <state width="905" height="347" key="GridCell.Tab.2.left" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.2.center/0.0.1366.768@0.0.1366.768" timestamp="1626831997188" />
+    <state width="905" height="307" key="GridCell.Tab.2.left" timestamp="1626831997187">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.2.left/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
-    <state width="905" height="347" key="GridCell.Tab.2.right" timestamp="1626812746774">
+    <state width="905" height="307" key="GridCell.Tab.2.left/0.0.1366.768@0.0.1366.768" timestamp="1626831997187" />
+    <state width="905" height="307" key="GridCell.Tab.2.right" timestamp="1626831997188">
       <screen x="0" y="0" width="1366" height="768" />
     </state>
-    <state width="905" height="347" key="GridCell.Tab.2.right/0.0.1366.768@0.0.1366.768" timestamp="1626812746774" />
+    <state width="905" height="307" key="GridCell.Tab.2.right/0.0.1366.768@0.0.1366.768" timestamp="1626831997188" />
   </component>
 </project>
