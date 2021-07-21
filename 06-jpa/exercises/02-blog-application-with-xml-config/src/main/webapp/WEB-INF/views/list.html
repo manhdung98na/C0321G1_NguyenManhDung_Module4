@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/layout :: head">
+</head>
+<body>
+<h2>BLOGS LIST</h2>
+<div style="width: 50vw">
+<!--nút thêm mới-->
+<p id="add-blog" th:hidden="false">
+    <a th:href="@{/create}" style="float: left; padding: 8px">
+        Add new blog
+    </a>
+</p>
+<!--thanh tìm kiếm-->
+<div style="display: inline;float: right; width: 300px; height: 50px; margin: 8px">
+    <form th:action="@{/search}" method="get">
+        <input type="text" id="search-content" name="search-content" placeholder="Search by title"
+               style="display: inline; width: 70%; padding: 8px">
+        <button type="submit">Search</button>
+    </form>
+</div>
+<!--form xác nhận xoá-->
+<form id="delete-blog" method="post" action="/delete" hidden>
+    <input hidden name="id-delete" id="id-delete" value="">
+    <h4>Xoá nhận xoá</h4>
+    <div>
+        <button type="button" onclick="hideConfirmForm()">No</button>
+        <button type="submit">Yes</button>
+    </div>
+</form>
+
+<!--thông báo thành công/thất bại-->
+<div class="notify">
+    <div th:if="${status}">
+        <!--/*@thymesVar id="success" type="com.codegym.controller"*/-->
+        <span th:text="${status}"></span>
+    </div>
+</div>
+
+<!--danh sách sản phẩm-->
+<table id="blogs">
+    <thead>
+    <tr>
+        <th style="width: 10%">STT</th>
+        <th>Title</th>
+        <th style="width: 30%">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="blog : ${blogs}">
+        <td><a th:href="@{/view/{id}(id=${blog.id})}" th:text="${blog.id}"></a></td>
+        <td th:text="${blog.titleBlog}"></td>
+        <td>
+            <a th:href="@{/view/{id}(id=${blog.id})}">View</a>
+            <a th:href="@{/edit/{id}(id=${blog.id})}">Edit</a>
+            <a href="#" th:onclick="|confirmDelete('${blog.id}')|">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<a href="/">Back to home</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+<script>
+    function confirmDelete(id) {
+        document.getElementById("id-delete").value = id;
+        document.getElementById("add-blog").hidden = true;
+        document.getElementById("delete-blog").hidden = false;
+    }
+</script>
+<script>
+    function hideConfirmForm() {
+        document.getElementById("add-blog").hidden = false;
+        document.getElementById("delete-blog").hidden = true;
+    }
+</script>
+</html>
