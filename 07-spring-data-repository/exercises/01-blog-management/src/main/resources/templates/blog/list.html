@@ -48,7 +48,7 @@
         </thead>
         <tbody>
         <tr th:each="blog : ${blogs}">
-            <td th:text="${blogStat.count}"></td>
+            <td th:text="${blogStat.count + blogs.number*blogs.pageable.pageSize}"></td>
             <td th:text="${blog.titleBlog}"></td>
             <td>
                 <a th:href="@{/blog/view/{id}(id=${blog.id})}">View</a>
