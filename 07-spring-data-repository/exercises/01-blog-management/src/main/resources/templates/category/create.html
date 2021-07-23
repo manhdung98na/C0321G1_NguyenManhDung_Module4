@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="/layout :: head"></head>
+<body>
+<h2>ADD NEW CATEGORY</h2>
+<form th:action="@{/category/create}" th:object="${category}" method="post" id="form">
+    <table id="products" style="margin: 0; padding: 0"; width="100%">
+        <tr>
+            <td>
+                <label for="name">Name: </label>
+            </td>
+            <td>
+                <input id="name" th:field="*{name}" required style="width: 100%"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="reset" value="Reset"/>
+                <input type="submit" value="Submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="/category">
+    Back to home
+</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
