@@ -3,6 +3,8 @@ package com.codegym.model.service.category;
 import com.codegym.model.bean.Category;
 import com.codegym.model.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,5 +32,10 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public void delete(int id) {
         categoryRepository.deleteById(id);
+    }
+
+    @Override
+    public Page<Category> findByName(String name, Pageable pageable) {
+        return categoryRepository.findByNameContaining(name, pageable);
     }
 }

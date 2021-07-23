@@ -1,9 +1,12 @@
 package com.codegym.controller;
 
-import com.codegym.model.bean.Blog;
 import com.codegym.model.bean.Category;
 import com.codegym.model.service.category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -70,5 +73,11 @@ public class CategoryController {
         categoryService.delete(id);
         redirectAttributes.addFlashAttribute("status", "Xoá thành công!");
         return "redirect:/category";
+    }
+    @GetMapping("/search")
+    public ModelAndView searchByTitle(@RequestParam("search-content") String name,
+                                      @PageableDefault(value = 5, sort = "id") Pageable pageable) {
+        Page<Category> list = categoryService.findByName(name, pageable);
+        return new ModelAndView("category/list", "categories", list);
     }
 }
