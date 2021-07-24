@@ -85,8 +85,12 @@ public class BlogController {
 
     @GetMapping("/search")
     public ModelAndView searchByTitle(@RequestParam("search-content") String titleSearch,
-                                      @PageableDefault(value = 5, sort = "dateCreate", direction = Sort.Direction.DESC) Pageable pageable) {
+                                      @PageableDefault(value = 4, sort = "dateCreate", direction = Sort.Direction.DESC) Pageable pageable) {
+        System.out.println(titleSearch);
         Page<Blog> list = blogService.findByTitle(titleSearch, pageable);
-        return new ModelAndView("blog/list", "blogs", list);
+        ModelAndView modelAndView = new ModelAndView("blog/list");
+        modelAndView.addObject("blogs", list);
+        modelAndView.addObject("searchContent", titleSearch);
+        return modelAndView;
     }
 }
