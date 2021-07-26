@@ -1,13 +1,12 @@
 package com.codegym.model.bean;
 
+import com.codegym.my_validation.MyValidation;
+
 import javax.validation.constraints.Min;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.Size;
 
 public class User {
 
-    @NotEmpty
-    @Size(min = 2, max = 30)
+    @MyValidation
     private String name;
 
     @Min(18)
@@ -16,7 +15,7 @@ public class User {
     public User() {
     }
 
-    public User(@NotEmpty @Size(min = 2, max = 30) String name, @Min(18) int age) {
+    public User(String name, int age) {
         this.name = name;
         this.age = age;
     }
