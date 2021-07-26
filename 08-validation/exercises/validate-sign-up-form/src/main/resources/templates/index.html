@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head th:replace="/layout :: head"></head>
+<body>
+<h2>ADD NEW USER</h2>
+<!--thông báo thành công/thất bại-->
+<div class="notify">
+    <div th:if="${status}">
+        <span th:text="${status}"></span>
+    </div>
+</div>
+<!--form input-->
+<form th:action="@{/create}" th:object="${user}" method="post" id="form">
+    <table id="users" style="margin: 0; padding: 0; width:100%">
+        <tr>
+            <td style="width: 30%">
+                <label for="first-name">First name: </label>
+            </td>
+            <td>
+                <input type="text" id="first-name" th:field="*{firstName}" required/>
+                <small th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}">First name Error</small>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 30%">
+                <label for="last-name">Last name: </label>
+            </td>
+            <td>
+                <input type="text" id="last-name" th:field="*{lastName}" required/>
+                <small th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Last name Error</small>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 30%" >
+                <label for="phone-number">Phone number: </label>
+            </td>
+            <td >
+                <input type="text" id="phone-number" th:field="*{phoneNumber}" required/>
+                <small th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}">Phone number Error</small>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 30%">
+                <label for="age">Age: </label>
+            </td>
+            <td>
+                <input type="number" id="age" th:field="*{age}" required/>
+                <small th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Age Error</small>
+            </td>
+        </tr>
+        <tr>
+            <td style="width: 30%">
+                <label for="email">Email: </label>
+            </td>
+            <td>
+                <input type="text" id="email" th:field="*{email}" required/>
+                <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</small>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" style="text-align: center">
+                <input type="reset" value="Reset"/>
+                <input type="submit" value="Submit"/>
+            </td>
+        </tr>
+    </table>
+</form>
+<a href="/">
+    Back to home
+</a>
+<footer th:replace="/layout :: footer"></footer>
+</body>
+</html>
