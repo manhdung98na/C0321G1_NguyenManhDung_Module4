@@ -22,12 +22,12 @@ public class FormController {
 
     @GetMapping("/")
     public String showIndex(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("userDTO", new UserDTO());
         return "index";
     }
 
     @PostMapping("/create")
-    public String checkValidation(@Validated @ModelAttribute("user") UserDTO userDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
+    public String checkValidation(@Validated @ModelAttribute("userDTO") UserDTO userDTO, BindingResult bindingResult, RedirectAttributes redirectAttributes) {
         new UserDTO().validate(userDTO,bindingResult);
         if (!bindingResult.hasFieldErrors()) {
             User inputUser = new User();
