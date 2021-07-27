@@ -1,4 +1,4 @@
-package com.codegym;
+package com.codegym.logger;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;

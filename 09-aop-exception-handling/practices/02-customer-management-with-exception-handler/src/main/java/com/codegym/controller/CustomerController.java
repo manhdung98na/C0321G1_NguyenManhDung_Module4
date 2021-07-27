@@ -1,6 +1,6 @@
-package controller;
+package com.codegym.controller;
 
-import com.codegym.Logger;
+import com.codegym.exception.DuplicateEmailException;
 import com.codegym.model.entity.Customer;
 import com.codegym.model.entity.Province;
 import com.codegym.model.service.CustomerService;
@@ -31,41 +31,36 @@ public class CustomerController {
     @GetMapping
     public ModelAndView showList(Optional<String> s, Pageable pageInfo) {
         ModelAndView modelAndView = new ModelAndView("/customers/list");
-        try {
-            Page<Customer> customers = s.isPresent() ? search(s, pageInfo) : getPage(pageInfo);
-            modelAndView.addObject("keyword", s.orElse(null));
-            modelAndView.addObject("customers", customers);
-            return modelAndView;
-        }catch (Exception e){
-            System.out.println("Lỗi phương thức showList");
-            return new ModelAndView("customers/error");
-        }
+        Page<Customer> customers = s.isPresent() ? search(s, pageInfo) : getPage(pageInfo);
+        modelAndView.addObject("keyword", s.orElse(null));
+        modelAndView.addObject("customers", customers);
+        return modelAndView;
     }
 
     @GetMapping("/{id}")
     public ModelAndView showInformation(@PathVariable Long id) {
-        try {
-            ModelAndView modelAndView = new ModelAndView("/customers/info");
-            Optional<Customer> customerOptional = customerService.findOne(id);
-            modelAndView.addObject("customer", customerOptional.get());
-            return modelAndView;
-        } catch (Exception e) {
-            System.out.println("Lỗi phương thức showInformation");
-            return new ModelAndView("customers/error");
-        }
+        ModelAndView modelAndView = new ModelAndView("/customers/info");
+        Optional<Customer> customerOptional = customerService.findOne(id);
+        modelAndView.addObject("customer", customerOptional.get());
+        return modelAndView;
     }
 
     @PostMapping
-    public ModelAndView updateCustomer(Customer customer) {
+    public ModelAndView updateCustomer(Customer customer) throws DuplicateEmailException {
         customerService.save(customer);
         return new ModelAndView("redirect:/customers");
     }
 
-    private Page<Customer> getPage(Pageable pageInfo) throws Exception {
+    private Page<Customer> getPage(Pageable pageInfo) {
         return customerService.findAll(pageInfo);
     }
 
     private Page<Customer> search(Optional<String> s, Pageable pageInfo) {
         return customerService.search(s.get(), pageInfo);
+    }
+
+    @ExceptionHandler(DuplicateEmailException.class)
+    public ModelAndView showInputNotAcceptable() {
+        return new ModelAndView("/customers/inputs-not-acceptable");
     }
 }
