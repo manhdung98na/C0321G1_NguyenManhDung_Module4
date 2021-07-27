@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Error</title>
+</head>
+<body>
+ERROR!!!
+<div class="notify">
+    <div th:if="${status}">
+        <span th:text="${status}"></span>
+    </div>
+</div>
+</body>
+</html>
