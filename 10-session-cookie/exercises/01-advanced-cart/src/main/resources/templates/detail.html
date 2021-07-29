@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail product</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assert/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<form th:action="@{/shop/add/__${productDTO.id}__}" method="post" th:object="${productDTO}" class="text-center">
+    <table class="table w-50"  style="height: 500px">
+        <tr>
+            <td rowspan="2">
+                <img th:src="${productDTO.image}" alt="Ảnh chụp sản phẩm">
+            </td>
+            <td>
+                <p class="text-dark" style="font-weight: bold; font-size: 32px" th:text="${productDTO.name}"></p><hr>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <img src="/image/khuyenmai.PNG" alt="Ảnh về chương trình khuyến mãi">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <label class="fs-2">Mã sản phẩm:</label>
+                <span class="fs-3" th:text="${productDTO.id}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><span class="fs-3 text-danger" th:text="${productDTO.price}"></span></td>
+
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-warning">Add to cart</button>
+            </td>
+        </tr>
+    </table>
+</form>
+
+<script src="assert/jquery/jquery-3.5.1.min.js"></script>
+<script src="assert/jquery/popper.min.js"></script>
+<script src="assert/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

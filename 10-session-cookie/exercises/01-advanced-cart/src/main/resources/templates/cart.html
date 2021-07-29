@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assert/bootstrap/css/bootstrap.min.css">
+    <style>
+        a {
+            text-decoration: none;
+        }
+        img{
+            height: 150px;
+            width: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="float-end m-2">
+    <button class="btn btn-primary">
+        <a href="/shop" style="color: white; text-decoration: none">Shop</a>
+    </button>
+</div>
+<div class="h1 text-center">Your Cart</div>
+<form th:action="@{/shop}" th:object="${cart}" method="post">
+    <table class="table">
+        <tr>
+            <td colspan="3">
+                <span th:text="'GIỎ HÀNG ('+${cart.countItemQuantity()}+')'"></span>
+            </td>
+        </tr>
+        <th:block th:each="product: ${cart.products}">
+            <tr>
+                <td rowspan="4" style="width: 150px">
+                    <img th:src="${product.getKey().image}">
+                </td>
+                <td colspan="2" th:text="${product.getKey().name}" style="color: #f7575f; font-weight: bold; font-size: 20px"></td>
+            </tr>
+            <tr>
+                <td style="width: 200px">Mã sản phẩm:</td>
+                <td th:text="${product.getKey().id}"></td>
+            </tr>
+            <tr>
+                <td style="width: 200px">Đơn giá:</td>
+                <td th:text="${product.getKey().price} + ' đ'"></td>
+            </tr>
+            <tr>
+                <td style="width: 200px">Số lượng:</td>
+                <td>
+                    <a id="decrease_button" th:href="@{/shop/add/__${product.getKey().id}__(action='decrease')}"
+                       th:text="${'-'}"></a>
+                    <span th:text="${product.getValue()}"></span>
+                    <a id="increase_button" th:href="@{/shop/add/__${product.getKey().id}__(action='increase')}"
+                       th:text="${'+'}"></a>
+                </td>
+            </tr>
+        </th:block>
+        <tr style="color: red; font-size: 25px; font-weight: bold">
+            <td>Tổng cộng</td>
+            <td th:text="${cart.countTotalPayment()} + ' đ'"></td>
+        </tr>
+
+    </table>
+</form>
+
+<script src="assert/jquery/jquery-3.5.1.min.js"></script>
+<script src="assert/jquery/popper.min.js"></script>
+<script src="assert/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>

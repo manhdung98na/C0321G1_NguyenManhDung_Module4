@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="assert/bootstrap/css/bootstrap.min.css">
+</head>
+<body>
+<div class="h2 text-danger text-center m-3">YOU HAVE MONEY FOR US - WE HAVE SHOES FOR YOU</div>
+
+<div class="text-danger">
+    <div th:if="${status}">
+        <span th:text="${status}"></span>
+    </div>
+</div>
+<div class="text-center">
+    <button class="btn btn-primary">
+        <a href="/shopping-cart" class="text-white text-decoration-none">Your cart</a>
+    </button>
+</div>
+<table class="table mt-3 mb-3">
+    <tr>
+        <td th:each="product : ${products}" style="width: 25vw">
+            <div class="card">
+                <a th:href="@{/shop/info/__${product.id}__}">
+                    <img th:src="${product.image}" class="card-img-top" th:alt="${product.description}">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${product.name}"></h5>
+                    <p class="card-text" th:text="${product.price}"></p>
+                    <a th:href="@{/shop/add/__${product.id}__}" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>
+<!--    Phân trang-->
+<div class="text-center mt-3 mb-3">
+    <a th:href="@{/shop(page=${products.number - 1})}" th:if="${products.hasPrevious()}">Previous</a>
+    <span th:text="${products.number + 1}"></span>/<span th:text="${products.totalPages}"></span>
+    <a th:href="@{/shop(page=${products.number + 1})}" th:if="${products.hasNext()}">Next</a>
+</div>
+
+<script src="assert/jquery/jquery-3.5.1.min.js"></script>
+<script src="assert/jquery/popper.min.js"></script>
+<script src="assert/bootstrap/js/bootstrap.min.js"></script>
+</body>
+</html>
