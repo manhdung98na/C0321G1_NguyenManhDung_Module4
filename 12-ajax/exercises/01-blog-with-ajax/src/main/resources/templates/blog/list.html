@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:insert="/layout :: head">
+</head>
+<body>
+<h2>BLOGS LIST</h2>
+<div style="width: 50vw">
+    <div style="width: 100%; height: 80px" id="add-blog" th:hidden="false">
+        <!--nút thêm mới-->
+        <p>
+            <a th:href="@{/blog/create}" style="float: left; padding: 8px">
+                Add new blog
+            </a>
+        </p>
+        <!--thanh tìm kiếm-->
+        <div style="display: inline;float: right; width: 300px; height: 50px; margin: 8px">
+            <input type="text" id="search-content" name="search-content" placeholder="Search by title"
+                   style="display: inline; width: 70%; padding: 8px">
+        </div>
+        <!--thông báo thành công/thất bại-->
+        <div class="notify">
+            <div th:if="${status}">
+                <!--/*@thymesVar id="status" type="com.codegym.controller.BlogController"*/-->
+                <span th:text="${status}"></span>
+            </div>
+        </div>
+        <!--form xác nhận xoá-->
+        <form id="delete-blog" method="post" action="/blog/delete" hidden>
+            <input hidden name="id-delete" id="id-delete" value="">
+            <h4>Xoá nhận xoá</h4>
+            <div>
+                <button type="button" onclick="hideConfirmForm()">No</button>
+                <button type="submit">Yes</button>
+            </div>
+        </form>
+    </div>
+
+    <!--danh sách sản phẩm-->
+    <div id="pageable">
+        <table id="table-blogs">
+            <thead>
+            <tr>
+                <th style="width: 10%">ID</th>
+                <th>Title</th>
+                <th style="width: 30%">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="blog : ${blogs}">
+                <td th:text="${blog.id}"></td>
+                <td th:text="${blog.titleBlog}"></td>
+                <td>
+                    <a th:href="@{/blog/view/{id}(id=${blog.id})}">View</a>
+                    <a th:href="@{/blog/edit/{id}(id=${blog.id})}">Edit</a>
+                    <a href="#" th:onclick="|confirmDelete('${blog.id}')|">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button id="all-blog-load-more">Load more</button>
+    </div>
+</div>
+<div style="text-align: center; padding: 8px">
+    <a href="/category">Category List</a>
+</div>
+<div style="text-align: center; padding: 8px">
+    <a href="/blog">Back to home</a>
+</div>
+<footer th:insert="/layout :: footer"></footer>
+<script src="assert/jquery/jquery-3.5.1.min.js"></script>
+</body>
+<script type="text/javascript">
+    let page = 0;
+    //tìmm kiếm vs ajax
+    $(document).ready(function () {
+        $('#all-blog-load-more').click(function () {
+            page++;
+            $.ajax({
+                url: "http://localhost:8080/api/v1/blog?page=" + page,
+                type: "GET",
+                dataType: "json",
+                success: function (listResponse) {
+                    let content = '';
+                    for (let i = 0; i < listResponse.content.length; i++) {
+                        content += getBlog(listResponse.content[i], i + 1);
+                    }
+                    $('#table-blogs').append(content);
+                    if (listResponse.last === true) {
+                        $('#all-blog-load-more').hide();
+                    }
+                }
+            });
+        });
+
+        $('#search-content').keyup(function () {
+            page = 0;
+            let title = $(this).val();
+            let url;
+            if (title === "") {
+                url = "http://localhost:8080/api/v1/blog";
+            } else {
+                url = "http://localhost:8080/api/v1/blog/search?title=" + title;
+            }
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "json",
+                //xử lý khi thành công
+                success: function (listResponse) {
+                    let content = '<table id="table-blogs">' +
+                        '<thead>' +
+                        '   <tr>\n' +
+                        '        <th style="width: :10%">ID</th>\n' +
+                        '        <th>Title</th>\n' +
+                        '        <th style="width: 30%">Action</th>\n' +
+                        '    </tr>' +
+                        '</thead><tbody>';
+                    for (let i = 0; i < listResponse.content.length; i++) {
+                        content += getBlog(listResponse.content[i]);
+                        if (page != listResponse.totalPages - 1 && i == listResponse.content.length - 1) {
+                            content += '</tbody></table><button id="search-load-more">Load more</button>';
+                        }
+                    }
+                    document.getElementById('pageable').innerHTML = content;
+                }
+            });
+        });
+
+        $('#search-load-more').click(function () {
+            page++;
+            console.log(page);
+            $.ajax({
+                url: "http://localhost:8080/api/v1/blog?search=" + $("#search-content").val() + "&page=" + page,
+                type: "GET",
+                dataType: "json",
+                success: function (listResponse) {
+                    if (listResponse == null) {
+                        $('#search-load-more').hide();
+                    } else {
+                        let content = '';
+                        for (let i = 0; i < listResponse.content.length; i++) {
+                            content += getBlog(listResponse.content[i], i + 1);
+                        }
+                        $('#table-blogs').append(content);
+                    }
+                }
+            });
+        });
+
+    });
+
+    function getBlog(blogObject) {
+        return `<tr>
+                    <td>${blogObject.id}</td>
+                    <td>${blogObject.titleBlog}</td>
+                    <td>
+                        <a th:href="@{/blog/view/{id}(id=${blogObject.id})}">View</a>
+                        <a th:href="@{/blog/edit/{id}(id=${blogObject.id})}">Edit</a>
+                        <button class="blog-delete-btn" value="${blogObject.id}">Delete</a>
+                    </td>
+                </tr>`;
+    }
+
+    function confirmDelete(id) {
+        document.getElementById("id-delete").value = id;
+        document.getElementById("add-blog").hidden = true;
+        document.getElementById("delete-blog").hidden = false;
+    }
+
+    function hideConfirmForm() {
+        document.getElementById("add-blog").hidden = false;
+        document.getElementById("delete-blog").hidden = true;
+    }
+</script>
+</html>
