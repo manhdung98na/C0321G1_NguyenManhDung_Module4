@@ -5,7 +5,6 @@
     <title>List Smartphone</title>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script type="text/javascript">
-
         function addNewSmartPhone() {
             //lay du lieu
             let producer = $('#producer').val();
@@ -46,6 +45,7 @@
                         '        <td>Producer</td>\n' +
                         '        <td>Model</td>\n' +
                         '        <td>Price</td>\n' +
+                        '        <td>Edit</td>' +
                         '        <td>Delete</td>\n' +
                         '    </tr>';
                     for (let i = 0; i < data.length; i++) {
@@ -58,7 +58,8 @@
 
         function getSmartphone(smartphone) {
             return `<tr><td >${smartphone.producer}</td><td >${smartphone.model}</td><td >${smartphone.price}</td>` +
-                `<td><a class="deleteSmartphone" href="${smartphone.id}">Delete</a></td></tr>`;
+                    `<td><button class="editSmartphone" value="${smartphone.id}">Edit</button></td>` +
+                `<td><button class="deleteSmartphone" href="${smartphone.id}">Delete</button></td></tr>`;
         }
 
         $(document).ready(function () {
@@ -81,12 +82,73 @@
                 //chặn sự kiện mặc định của thẻ
                 event.preventDefault();
             });
+
+            $('.editSmartphone').click(function () {
+                $('#tr-id').attr('hidden', false);
+                $('#id').val($(this).val());
+                $('#btn-add').hide();
+                $('#btn-edit').show();
+                $('#btn-cancel').show();
+            });
+
+            $('#btn-cancel').click(function () {
+                location.reload();
+            });
+
+            $('#btn-edit').click(function () {
+                $.ajax({
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    type: "POST",
+                    data: JSON.stringify({
+                        "id": $('#id').val(),
+                        "producer": $('#producer').val(),
+                        "model": $('#model').val(),
+                        "price": $('#price').val()
+                    }),
+                    //tên API
+                    url: "/smartphones",
+                    //xử lý khi thành công
+                    success: function () {
+                        $.ajax({
+                            type: "GET",
+                            //tên API
+                            url: "/smartphones",
+                            //xử lý khi thành công
+                            success: function (data) {
+                                // hien thi danh sach o day
+                                let content = '    <tr>\n' +
+                                    '        <td>Producer</td>\n' +
+                                    '        <td>Model</td>\n' +
+                                    '        <td>Price</td>\n' +
+                                    '        <td>Delete</td>\n' +
+                                    '    </tr>';
+                                for (let i = 0; i < data.length; i++) {
+                                    content += getSmartphone(data[i]);
+                                }
+                                document.getElementById('smartphoneList').innerHTML = content;
+                                $('#tr-id').attr('hidden', true);
+                                $('#btn-add').show();
+                                $('#btn-edit').hide();
+                                $('#btn-cancel').hide();
+                            }
+                        });
+                    }
+
+                });
+            });
         })
     </script>
 </head>
 <body>
 <form id="add-smartphone">
     <table>
+        <tr hidden id="tr-id">
+            <td>Id:</td>
+            <td><input type="text" id="id" placeholder="Id" readonly></td>
+        </tr>
         <tr>
             <td>Producer:</td>
             <td><input type="text" id="producer" placeholder="producer"></td>
@@ -101,7 +163,11 @@
         </tr>
         <tr>
             <td></td>
-            <td><input type="submit" value="Add" onclick="addNewSmartPhone()"></td>
+            <td>
+                <input type="submit" value="Add"  id="btn-add" onclick="addNewSmartPhone()">
+                <input type="button" value="Edit" id="btn-edit" hidden>
+                <input type="button" value="Cancel" id="btn-cancel" hidden>
+            </td>
         </tr>
     </table>
 </form>
@@ -111,6 +177,7 @@
         <td>Producer</td>
         <td>Model</td>
         <td>Price</td>
+        <td>Edit</td>
         <td>Delete</td>
     </tr>
     <th:block th:each="smartphone: ${smartphones}">
@@ -118,7 +185,8 @@
             <td th:text="${smartphone.producer}"></td>
             <td th:text="${smartphone.model}"></td>
             <td th:text="${smartphone.price}"></td>
-            <td><a class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</a></td>
+            <td><button class="editSmartphone" th:value="${smartphone.id}">Edit</button></td>
+            <td><button class="deleteSmartphone" th:href="${smartphone.getId()}">Delete</button></td>
         </tr>
     </th:block>
 </table>
