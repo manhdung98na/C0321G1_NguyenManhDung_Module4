@@ -1,4 +1,4 @@
-package com.codegym.controller.rest_controller;
+package com.codegym.rest_controller;
 
 import com.codegym.model.entity.Category;
 import com.codegym.model.service.category.CategoryService;

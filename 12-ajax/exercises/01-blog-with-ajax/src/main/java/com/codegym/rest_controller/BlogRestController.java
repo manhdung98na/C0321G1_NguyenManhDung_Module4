@@ -1,4 +1,4 @@
-package com.codegym.controller.rest_controller;
+package com.codegym.rest_controller;
 
 import com.codegym.model.entity.Blog;
 import com.codegym.model.service.blog.BlogService;
@@ -10,7 +10,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Optional;
 
 @CrossOrigin(origins = "*")
@@ -51,7 +50,6 @@ public class BlogRestController {
     @PutMapping
     public ResponseEntity<Void> update(@RequestBody Blog blog) {
         Optional<Blog> blogFoundById = Optional.ofNullable(blogService.findById(blog.getId()));
-        ;
         if (!blogFoundById.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
