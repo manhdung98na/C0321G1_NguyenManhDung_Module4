@@ -24,15 +24,15 @@
                 <span th:text="${status}"></span>
             </div>
         </div>
-        <!--form xác nhận xoá-->
-        <form id="delete-blog" method="post" action="/blog/delete" hidden>
-            <input hidden name="id-delete" id="id-delete" value="">
-            <h4>Xoá nhận xoá</h4>
-            <div>
-                <button type="button" onclick="hideConfirmForm()">No</button>
-                <button type="submit">Yes</button>
-            </div>
-        </form>
+    </div>
+
+    <!--form xác nhận xoá-->
+    <div id="confirm-form" hidden>
+        <h4 style="margin-bottom: 8px; display: inline">Xoá Blog có ID = </h4><output style="color: red" id="id-delete" name="id-delete"></output>
+        <div>
+            <button type="button" onclick="hideConfirmForm()">No</button>
+            <button type="button" onclick="doDelete()">Yes</button>
+        </div>
     </div>
 
     <!--danh sách sản phẩm-->
@@ -50,14 +50,14 @@
                 <td th:text="${blog.id}"></td>
                 <td th:text="${blog.titleBlog}"></td>
                 <td>
-                    <a th:href="@{/blog/view/{id}(id=${blog.id})}">View</a>
-                    <a th:href="@{/blog/edit/{id}(id=${blog.id})}">Edit</a>
-                    <a href="#" th:onclick="|confirmDelete('${blog.id}')|">Delete</a>
+                    <button th:onclick="|viewBlog('${blog.id}')|">View</button>
+                    <button th:onclick="|editBlog('${blog.id}')|">Edit</button>
+                    <button th:onclick="|deleteBlog('${blog.id}')|" id="delete-btn">Delete</button>
                 </td>
             </tr>
             </tbody>
         </table>
-        <button id="all-blog-load-more">Load more</button>
+        <button id="all-blog-load-more" th:if="${blogs.totalPages > 1}">Load more</button>
     </div>
 </div>
 <div style="text-align: center; padding: 8px">
@@ -67,13 +67,13 @@
     <a href="/blog">Back to home</a>
 </div>
 <footer th:insert="/layout :: footer"></footer>
-<script src="assert/jquery/jquery-3.5.1.min.js"></script>
+
 </body>
 <script type="text/javascript">
     let page = 0;
     //tìmm kiếm vs ajax
     $(document).ready(function () {
-        $('#all-blog-load-more').click(function () {
+        $('#all-blog-load-more').click(function (e) {
             page++;
             $.ajax({
                 url: "http://localhost:8080/api/v1/blog?page=" + page,
@@ -90,9 +90,10 @@
                     }
                 }
             });
+            e.preventDefault();
         });
 
-        $('#search-content').keyup(function () {
+        $('#search-content').keyup(function (e) {
             page = 0;
             let title = $(this).val();
             let url;
@@ -124,29 +125,8 @@
                     document.getElementById('pageable').innerHTML = content;
                 }
             });
+            e.preventDefault();
         });
-
-        $('#search-load-more').click(function () {
-            page++;
-            console.log("âbavas");
-            $.ajax({
-                url: "http://localhost:8080/api/v1/blog?search=" + $("#search-content").val() + "&page=" + page,
-                type: "GET",
-                dataType: "json",
-                success: function (listResponse) {
-                    if (listResponse == null) {
-                        $('#search-load-more').hide();
-                    } else {
-                        let content = '';
-                        for (let i = 0; i < listResponse.content.length; i++) {
-                            content += getBlog(listResponse.content[i], i + 1);
-                        }
-                        $('#table-blogs').append(content);
-                    }
-                }
-            });
-        });
-
     });
 
     function getBlog(blogObject) {
@@ -154,22 +134,42 @@
                     <td>${blogObject.id}</td>
                     <td>${blogObject.titleBlog}</td>
                     <td>
-                        <a th:href="@{/blog/view/{id}(id=${blogObject.id})}">View</a>
-                        <a th:href="@{/blog/edit/{id}(id=${blogObject.id})}">Edit</a>
-                        <button class="blog-delete-btn" value="${blogObject.id}">Delete</a>
+                        <button onclick="viewBlog(${blogObject.id})">View</button>
+                        <button onclick="editBlog(${blogObject.id})">Edit</button>
+                        <button onclick="deleteBlog(${blogObject.id})" id="delete-btn">Delete</button>
                     </td>
                 </tr>`;
     }
 
-    function confirmDelete(id) {
-        document.getElementById("id-delete").value = id;
-        document.getElementById("add-blog").hidden = true;
-        document.getElementById("delete-blog").hidden = false;
+    function viewBlog(id) {
+        let url = "http://localhost:8080/blog/view/" + id;
+        window.location.href = url;
     }
 
+    function editBlog(id) {
+        let url = "http://localhost:8080/blog/edit/" + id;
+        window.location.href = url;
+    }
+
+    function deleteBlog(id) {
+        $("#id-delete").val(id);
+        $("#add-blog").hide();
+        $("#confirm-form").show();
+    }
+
+    function doDelete() {
+        console.log($("#id-delete").val());
+        $.ajax({
+            url: "http://localhost:8080/api/v1/blog/" + $('#id-delete').val(),
+            type: "DELETE",
+            success: function (data) {
+                location.href = "http://localhost:8080/blog";
+            }
+        });
+    }
     function hideConfirmForm() {
-        document.getElementById("add-blog").hidden = false;
-        document.getElementById("delete-blog").hidden = true;
+        $("#add-blog").show();
+        $("#confirm-form").hide();
     }
 </script>
 </html>

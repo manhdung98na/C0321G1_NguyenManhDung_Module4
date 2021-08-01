@@ -24,7 +24,7 @@ public class BlogController {
     private CategoryService categoryService;
 
     @GetMapping("")
-    public ModelAndView showList(@PageableDefault(value = 4, sort = "dateCreate", direction = Sort.Direction.DESC) Pageable pageable) {
+    public ModelAndView showList(@PageableDefault(value = 4) Pageable pageable) {
         Page<Blog> list = blogService.findAll(pageable);
         return new ModelAndView("blog/list", "blogs", list);
     }

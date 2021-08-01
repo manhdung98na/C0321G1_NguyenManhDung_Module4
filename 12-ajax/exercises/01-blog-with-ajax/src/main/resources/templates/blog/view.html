@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/layout::head">
+<head th:insert="/layout::head">
 </head>
 <body>
 <h2>BLOG DETAIL</h2>
-<table id="blogs" style="width: 50vw">
+<table id="table-blogs" style="width: 50vw">
     <tr>
         <th class="th-view">ID</th>
         <td th:text="${blog.id}"></td>
@@ -29,6 +29,6 @@
 <a href="/blog">
     Back to home
 </a>
-<footer th:replace="/layout::footer"></footer>
+<footer th:insert="/layout::footer"></footer>
 </body>
 </html>
