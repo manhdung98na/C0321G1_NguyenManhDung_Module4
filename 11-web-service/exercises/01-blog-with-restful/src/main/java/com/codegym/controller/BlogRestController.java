@@ -22,7 +22,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/blog")
-public class BlogController {
+public class BlogRestController {
     @Autowired
     private BlogService blogService;
     @Autowired
@@ -47,27 +47,27 @@ public class BlogController {
     }
 
     @PostMapping
-    public ResponseEntity<Blog> add(@RequestBody Blog blog) {
-        return new ResponseEntity<>(blogService.save(blog), HttpStatus.CREATED);
+    public ResponseEntity<Void> add(@RequestBody Blog blog) {
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Blog> update(@RequestBody Blog blog) {
+    public ResponseEntity<Void> update(@RequestBody Blog blog) {
         Optional<Blog> blogFoundById = Optional.ofNullable(blogService.findById(blog.getId()));
         ;
         if (!blogFoundById.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(blogService.save(blog), HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Blog> delete(@PathVariable int id) {
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         Blog blog = blogService.findById(id);
         if (blog == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         blogService.delete(id);
-        return new ResponseEntity<>(blog, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

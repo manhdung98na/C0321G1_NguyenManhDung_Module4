@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/category")
-public class CategoryController {
+public class CategoryRestController {
     @Autowired
     private CategoryService categoryService;
 
@@ -35,26 +35,28 @@ public class CategoryController {
     }
 
     @PostMapping
-    public ResponseEntity<Category> add(@RequestBody Category category) {
-        return new ResponseEntity<>(categoryService.save(category), HttpStatus.CREATED);
+    public ResponseEntity<Void> add(@RequestBody Category category) {
+        categoryService.save(category);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping
-    public ResponseEntity<Category> update(@RequestBody Category category) {
+    public ResponseEntity<Void> update(@RequestBody Category category) {
         Optional<Category> categoryFoundById = Optional.ofNullable(categoryService.findById(category.getId()));
         ;
         if (!categoryFoundById.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(categoryService.save(category), HttpStatus.OK);
+        categoryService.save(category);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Category> delete(@PathVariable int id) {
+    public ResponseEntity<Void> delete(@PathVariable int id) {
         Category category = categoryService.delete(id);
         if (category == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(category, HttpStatus.OK);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }
